@@ -94,11 +94,12 @@ $.each(["Top", "Right", "Bottom", "Left", "Width", "Height"], function(index, va
 });
 
 // a dirty hack to figure out the px dimensions of any num/unit combo
-$.inPx = function( m ) {
+$.inPx = function( m, ctx ) {
+    ctx = ctx ? $(ctx) : $("body");
     var rnumpx = /^-?\d+(?:px)?$/i, rnum = /^-?\d/;
     if(!rnumpx.test(m) && rnum.test(m)) {
         var $e = $("<div style='left:0;position:absolute;top:0;'>");
-        $("body").append($e);
+        ctx.append($e);
         var t1 = $e.offset().top;
         $e.css("top", m);
         var t2 = $e.offset().top;
