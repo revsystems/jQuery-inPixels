@@ -11,13 +11,18 @@ $.fn.margin = function( side ) {
     // set it back
     // if it doesn't have the same offset it started with, it must be auto (for firefox)
     function shiftDiff( s ) {
-        var m = $e.css("margin-" + s);
-        var x = $e.offset()[s];
-        $e.css("margin-" + s, 0);
-        var res = x - $e.offset()[s];
-        $e.css("margin-" + s, m);
-        if($e.offset()[s] !== x) $e.css("margin-" + s, "auto");
-        return res;
+        if(s.match(/left|right/i)) {
+          var m = $e.css("margin-" + s);
+          var x = $e.offset()[s];
+          $e.css("margin-" + s, 0);
+          var res = x - $e.offset()[s];
+          $e.css("margin-" + s, m);
+          if($e.offset()[s] !== x) $e.css("margin-" + s, "auto");
+          return res;
+        }
+        else {
+          return parseFloat($e.css("margin-" + s));
+        }
     }
     
     // if auto is working (centered), then left/right 
