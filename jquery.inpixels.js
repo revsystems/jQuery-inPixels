@@ -1,24 +1,23 @@
 (function($) {
 
+function proper(s) {
+  return s.substring(0,1).toUpperCase() + s.substring(1).toLowerCase();
+}
+
 $.fn.margin = function( side ) {
     var $e = $(this).eq(0);
     
-    // if the return value is auto, find the offset 
-    // difference when we set the margin to 0 and return that
-    // otherwise return the value in px
+    // find the offset difference when we set the margin to 0
+    // set it back
+    // if it doesn't have the same offset it started with, it must be auto (for firefox)
     function shiftDiff( s ) {
-        var cs = "margin" + s.substring(0,1).toUpperCase() + s.substring(1);
-        if(window.getComputedStyle === undefined) {
-            var res = $e[0].currentStyle[cs];
-            if(res === "auto") {
-                var x = $e.offset()[s];
-                $e[0].style[cs] = 0;
-                res = x - $e.offset()[s];
-                $e[0].style[cs] = "auto";
-            }
-            return parseFloat(res);
-        }
-        return parseFloat(getComputedStyle($e[0])["margin-" + side]);
+        var m = $e.css("margin-" + s);
+        var x = $e.offset()[s];
+        $e.css("margin-" + s, 0);
+        var res = x - $e.offset()[s];
+        $e.css("margin-" + s, m);
+        if($e.offset()[s] !== x) $e.css("margin-" + s, "auto");
+        return res;
     }
     
     // if auto is working (centered), then left/right 
