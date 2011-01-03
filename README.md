@@ -38,4 +38,15 @@ Requires [jQuery](http://jquery.com) and this plugin.
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
     <script type="text/javascript" src="jquery.tie.js"></script>
     
-### 
+You can then use width values for margin/padding/border just as you would with jQuery's width() and height() functions:
+
+    alert($("target").marginLeft());
+    alert($("target").marginBottom());
+    alert($("target").marginWidth()); // left + right
+    alert($("target").marginHeight()); // top + bottom
+    alert($("target").paddingLeft());
+    alert($("target").paddingTop());
+    alert($("target").borderRight());
+    alert($("target").borderTop()); 
+    alert($("target").borderWidth()); // left + right
+    alert($("target").borderHeight()); // top + bottom
