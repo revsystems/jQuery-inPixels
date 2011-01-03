@@ -1,26 +1,42 @@
 (function($) {
 
-function proper(s) {
-  return s.substring(0,1).toUpperCase() + s.substring(1).toLowerCase();
-}
-
 $.fn.margin = function( side ) {
     var $e = $(this).eq(0);
     
-    // find the offset difference when we set the margin to 0
-    // set it back
-    // if it doesn't have the same offset it started with, it must be auto (for firefox)
+    // different methods for each browser type
     function shiftDiff( s ) {
-        if(s.match(/left|right/i)) {
-          var m = $e.css("margin-" + s);
-          var x = $e.offset()[s];
-          $e.css("margin-" + s, 0);
-          var res = x - $e.offset()[s];
-          $e.css("margin-" + s, m);
-          if($e.offset()[s] !== x) $e.css("margin-" + s, "auto");
-          return res;
+        var cs = "margin" + s.substring(0,1).toUpperCase() + s.substring(1);
+        if($e[0].currentStyle !== undefined) {
+            // if we get auto back, do the offset diff trick
+            var res = $e[0].currentStyle[cs];
+            if(res === "auto") {
+                var x = $e.offset()[s];
+                $e[0].style[cs] = 0;
+                res = x - $e.offset()[s];
+                $e[0].style[cs] = "auto";
+            }
+            return parseFloat(res);
+        }
+        else if($.browser.mozilla) {
+          if(s.match(/left|right/i) && $e.css("margin-" + s) === "0px") {
+            // 0 could be 0 or auto. to find out, set it to 0 manually then do the offset diff trick
+            // if it should be auto, make sure you set it back to that
+            var x = $e.offset()[s];
+            $e.css("margin-" + s, 0);
+            var res = x - $e.offset()[s];
+            if($e.offset()[s] !== x) { $e.css("margin-" + s, "auto"); }
+            return res;
+          }
+          else {
+            return parseFloat($e.css("margin-" + s));
+          }
+        }
+        else if(window.getComputedStyle) {
+          // webkit, just use getComputedStyle, it works
+          return parseFloat(getComputedStyle($e[0], "")["margin-" + side]);
         }
         else {
+          // unknown
           return parseFloat($e.css("margin-" + s));
         }
     }

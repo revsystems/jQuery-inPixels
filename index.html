@@ -11,48 +11,61 @@
   <link rel="stylesheet" type="text/css" href="ie.css" />
   <![endif]-->
   <script type="text/javascript">
-    $(document).ready(function() {
-      $("#example1").click(function() {
+    $(document).ready(function( event ) {
+      $("#example1").click(function( event ) {
+        event.preventDefault();
         alert($(".inner_container:first").marginLeft());
       });
-      $("#example2").click(function() {
+      $("#example2").click(function( event ) {
+        event.preventDefault();
         alert($("#example_box").paddingLeft());
       });
-      $("#example3").click(function() {
+      $("#example3").click(function( event ) {
+        event.preventDefault();
         alert($("#example_box").borderLeft());
       });
       
-      $("#example4").click(function() {
+      $("#example4").click(function( event ) {
+        event.preventDefault();
         alert($(".inner_container:first").marginWidth());
       });
-      $("#example5").click(function() {
+      $("#example5").click(function( event ) {
+        event.preventDefault();
         alert($("#example_box").paddingWidth());
       });
-      $("#example6").click(function() {
+      $("#example6").click(function( event ) {
+        event.preventDefault();
         alert($("#example_box").borderWidth());
       });
       
-      $("#example7").click(function() {
+      $("#example7").click(function( event ) {
+        event.preventDefault();
         alert($("#example_box").marginTop());
       });
-      $("#example8").click(function() {
+      $("#example8").click(function( event ) {
+        event.preventDefault();
         alert($("#example_box").paddingTop());
       });
-      $("#example9").click(function() {
+      $("#example9").click(function( event ) {
+        event.preventDefault();
         alert($("#example_box").borderTop());
       });
       
-      $("#example10").click(function() {
+      $("#example10").click(function( event ) {
+        event.preventDefault();
         alert($("#example_box").marginHeight());
       });
-      $("#example11").click(function() {
+      $("#example11").click(function( event ) {
+        event.preventDefault();
         alert($("#example_box").paddingHeight());
       });
-      $("#example12").click(function() {
+      $("#example12").click(function( event ) {
+        event.preventDefault();
         alert($("#example_box").borderHeight());
       });
       
-      $("#convert").click(function() {
+      $("#convert").click(function( event ) {
+        event.preventDefault();
         alert($.inPx($("[name=measurement]").val() + $("[name=unit]").val()));
       });
     });
