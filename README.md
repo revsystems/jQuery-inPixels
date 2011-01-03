@@ -40,14 +40,27 @@ Requires [jQuery](http://jquery.com) and this plugin.
     
 You can then use width values for margin/padding/border just as you would with jQuery's width() and height() functions:
 
-    alert($("target").marginLeft());
-    alert($("target").marginBottom());
-    alert($("target").marginWidth()); // left + right
-    alert($("target").marginHeight()); // top + bottom
-    alert($("target").paddingLeft());
-    alert($("target").paddingTop());
-    alert($("target").borderRight());
-    alert($("target").borderTop()); 
-    alert($("target").borderWidth()); // left + right
-    alert($("target").borderHeight()); // top + bottom
+    alert($("target").marginTop() * 3);
+    alert($("target").offset().left + $("target").marginLeft() + $("target").borderLeft() + $("target").paddingLeft());
+    
+## Functions
 
+  * marginTop()
+  * marginRight()
+  * marginBottom()
+  * marginLeft()
+  * marginWidth()
+  * marginHeight()
+  * paddingTop()
+  * paddingRight()
+  * paddingBottom()
+  * paddingLeft()
+  * paddingWidth()
+  * paddingHeight()
+  * borderTop()
+  * borderRight()
+  * borderBottom()
+  * borderLeft()
+  * borderWidth()
+  * borderHeight()
+  * $.inPx( measurement, ctx ) // e.g. $.inPx("2in") or $.inPx("2em", "#header")
