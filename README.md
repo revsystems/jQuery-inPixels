@@ -50,3 +50,4 @@ You can then use width values for margin/padding/border just as you would with j
     alert($("target").borderTop()); 
     alert($("target").borderWidth()); // left + right
     alert($("target").borderHeight()); // top + bottom
+
