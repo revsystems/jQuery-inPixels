@@ -1,6 +1,0 @@
-/* Set border-colors for IE to simulate 3D effect */
-.button{border-top-color:#8c8;border-right-color:#060;border-bottom-color:#060;border-left-color:#8c8;*display:inline;zoom:1;}
-.full_width{display:block;}
-
-/* inline-block doesn't work on natural block elements (div) in ie7 and below. this hack forces it to work. */
-.cols>*{*display:inline;zoom:1;}
